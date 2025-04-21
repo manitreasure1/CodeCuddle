@@ -1,8 +1,9 @@
 from fastapi import FastAPI
-from apis.explain_code import explain_router
-from apis.run_code import run_code_router
+from app.apis.explain_code import explain_router
+from app.apis.run_code import run_code_router
 
-app = FastAPI(title="CodeCUddle")
+
+app = FastAPI(title="CodeCuddle")
 
 
 app.include_router(explain_router, prefix="/api/explain", tags=["Run COde"])

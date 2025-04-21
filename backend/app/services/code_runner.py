@@ -1,8 +1,43 @@
 
 
-def execute_code(code: str, language: str):
-    pass
+
+import httpx
 
 
 
-# eyJhbGciOiJIUzI1NiIsImtpZCI6IlV6SXJWd1h0dnprLVRvdzlLZWstc0M1akptWXBvX1VaVkxUZlpnMDRlOFUiLCJ0eXAiOiJKV1QifQ.eyJzdWIiOiJnb29nbGUtb2F1dGgyfDEwNDY2OTczNDk4MzI0MTkwNjg3MyIsInNjb3BlIjoib3BlbmlkIG9mZmxpbmVfYWNjZXNzIiwiaXNzIjoiYXBpX2tleV9pc3N1ZXIiLCJhdWQiOlsiaHR0cHM6Ly9uZWJpdXMtaW5mZXJlbmNlLmV1LmF1dGgwLmNvbS9hcGkvdjIvIl0sImV4cCI6MTkwMjg4MTE4NCwidXVpZCI6ImRlMmQzNmQ1LWE5MzctNDFmMS1iOTYxLWEyYTdkYWZmNTQzMCIsIm5hbWUiOiJjb2RlY3VkZGxlIiwiZXhwaXJlc19hdCI6IjIwMzAtMDQtMjBUMDI6MDY6MjQrMDAwMCJ9.28TWZbyHhHMu-6fEbtK-nIw7e6eFphc5sM-PEWY3LYI
+async def execute_code(code: str, language: str):
+    url = "https://emkc.org/api/v2/piston/execute"
+    payload = {
+        "language": f"{language}",  
+        "version": "3.10",       
+        "files": [
+          {
+            "content":f"{code}"
+          }
+        ],
+        "stdin": "",
+        "args": [],   
+        "compile_timeout": 10000, 
+        "run_timeout": 3000,       
+        "compile_memory_limit": -1,  
+        "run_memory_limit": -1
+    }
+
+    try:
+        async with httpx.AsyncClient() as client:
+             response = await client.post(url, json=payload)
+             response.raise_for_status()
+             result = response.json()   
+             return {
+                 "language": result.get("language"),
+                 "version": result.get("version"),
+                 "output": result["run"]["output"],
+                 "stderr": result["run"]["stderr"],
+                 "exit_code": result["run"]["code"]
+             }  
+    except httpx.HTTPError as e:
+        return {
+             "error":"Request failed",
+             "details": str(e)
+        }
+

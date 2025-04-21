@@ -1,0 +1,23 @@
+
+
+POST https://emkc.org/api/v2/piston/execute
+Content-Type: application/json
+
+{
+  "language": "python3",  
+  "version": "3.10",       
+  "files": [
+    {
+    //  "name": "my_cool_code.py",  
+      "content":"from typing import Generic, TypeVar\n\nT = TypeVar('T')\n\nclass Stack(Generic[T]):\n    def __init__(self) -> None:\n        self.items: list[T] = []\n\n    def push(self, item: T) -> None:\n        self.items.append(item)\n\n    def pop(self) -> T:\n        return self.items.pop()\n\n    def empty(self) -> bool:\n        return not self.items\n\nstack = Stack[int]()\nstack.push(10)\nstack.push(20)\nprint(stack.pop())\nprint(stack.empty())"
+    }
+  ],
+  "stdin": "",
+  "args": [],   
+  "compile_timeout": 10000, 
+  "run_timeout": 3000,       
+  "compile_memory_limit": -1,  
+  "run_memory_limit": -1
+}
+
+

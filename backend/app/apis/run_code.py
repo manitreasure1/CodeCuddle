@@ -5,7 +5,7 @@ from app.schemas.code import CodeRequest
 
 run_code_router = APIRouter()
 
-@run_code_router.route("/")
+@run_code_router.post("/")
 async def run(code_request: CodeRequest):
     try:
         result = execute_code(code_request.code, code_request.language)
