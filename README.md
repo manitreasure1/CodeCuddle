@@ -29,7 +29,6 @@
 ### Backend
 - FastAPI (Python)
 - Piston API (for code execution)
-- OpenAI API (or local LLM) for explanations
 
 ---
 
