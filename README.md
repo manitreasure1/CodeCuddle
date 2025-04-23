@@ -37,6 +37,6 @@
 ### 1. Clone the Repo
 
 ```bash
-git clone https://github.com/yourusername/codecuddle.git
-cd codecuddle
+git clone https://github.com/manitreasure1/CodeCuddle
+cd CodeCuddle
 

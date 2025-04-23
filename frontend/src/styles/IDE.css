@@ -1,0 +1,24 @@
+.editor-wrapper {
+    position: relative;
+    height: calc(100vh - 90px - 1rem);
+    width: 100%;
+    padding: 0;
+    
+  }
+  
+.editor-textarea {
+    width: 100%;
+    background-color: #000000d8;
+    color: rgba(255, 255, 255, 0.619);            
+    caret-color: white; 
+    padding-left: 4%;
+    font-family: 'Fira Code', monospace;
+    font-size: 1rem;
+    resize: none;
+    z-index: 1000;
+    overflow: hidden auto;
+    word-break: normal;
+    box-sizing: border-box;
+    height: 100%;
+  }
+  
