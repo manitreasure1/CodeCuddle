@@ -1,9 +1,10 @@
 .editor-wrapper {
-    position: relative;
-    height: calc(100vh - 90px - 1rem);
-    width: 100%;
     padding: 0;
-    
+    position: relative;
+  }
+  .editor-wrapper div{
+    position: absolute;
+    right: 0;
   }
   
 .editor-textarea {
@@ -13,12 +14,21 @@
     caret-color: white; 
     padding-left: 4%;
     font-family: 'Fira Code', monospace;
-    font-size: 1rem;
+   
     resize: none;
-    z-index: 1000;
-    overflow: hidden auto;
-    word-break: normal;
-    box-sizing: border-box;
     height: 100%;
   }
   
+.select-lang{
+  position: absolute;
+  background-color: rgb(26, 27, 27);
+  left: 0;
+  top: 0;
+  padding: 5px;
+  color: whitesmoke;
+}
+
+
+@media (max-width: 1000px){
+  
+}

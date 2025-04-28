@@ -1,4 +1,4 @@
-from fastapi import APIRouter, status, HTTPException, Response
+from fastapi import APIRouter, status, HTTPException
 from app.schemas.code import ExplainRequest
 from app.services.code_explainer import explain_code
 

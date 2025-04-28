@@ -1,8 +1,9 @@
 #root {
-  max-width: 1280px;
+  /* max-width: 1280px; */
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
+  box-sizing: border-box;
 }
 
 
@@ -10,17 +11,41 @@ ul{
   list-style: none;
   display: inline-flex;
   width: 100%;
-  justify-content: space-evenly;  
   
 }
 li{
-flex-grow: 1;
-  border: 1px solid whitesmoke;
+ flex-grow: 1;
+ border: 2px solid rgb(56, 70, 79);
+ padding: .5em 0;
 }
 li:hover{
   cursor: pointer;
 
 }
-.console-panel{
-  position: relative;
+
+.ide-container{
+  justify-content: center;
+  height: 90vh;
+}
+.ide-container-items{
+  display: flex;
+  height: 100%;
+}
+
+
+@media (max-width: 768px) {
+  #root{
+    height: 100%;
+    padding: 0;
+  }
+  li {
+    width: 100%;
+  }
+  .ide-container-items {
+    flex-direction: column;
+  }
+  .ide-container{
+    height: 100vh;
+  }
+  
 }

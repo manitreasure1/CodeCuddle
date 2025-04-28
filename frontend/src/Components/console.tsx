@@ -1,27 +1,37 @@
 
 import { Col } from "react-bootstrap";
 import SelectMode from "./selectMode";
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { ButtonContext } from "../App";
 
 
-function Console() {
+function Console({ sendDataToParent }: { sendDataToParent: (log: string) => void}) {
+  const [mode, setMode] = useState<string>("Default");
+  const [output, setOutput] = useState<string>("Output appears here...")
 
   const buttonContext = useContext(ButtonContext);
   if (!buttonContext){
-      throw new Error("Button context is Null")
+    throw new Error("Button context is Null")
   }
   const {activeButton} = buttonContext;
 
+  useEffect(()=>{
+    const logMessage = `mode: ${mode} `
+    sendDataToParent(logMessage)
+  }, [activeButton, mode])
+
+  const handleModeChange = (newMode: string) => {
+    setMode(newMode);
+  };
 
   return (
     <>
-        <Col className="console-panel bg-dark text-white p-2">
+        <Col className="console-panel bg-dark text-white p-0 m-0">
         {
-          activeButton === 'explain' && <SelectMode/>
+          activeButton === 'explain' && <SelectMode mode={mode} setMode={handleModeChange}/>
         }
           <strong>Console:</strong>
-          <div>Output appears here...</div>
+          <div>{output}</div>
         </Col>
     </>
   )

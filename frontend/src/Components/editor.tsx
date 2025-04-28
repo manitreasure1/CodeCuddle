@@ -1,37 +1,46 @@
 
 import {  Button, Col } from "react-bootstrap";
-import { useState, useContext } from "react";
+import { useState, useContext, memo, useEffect } from "react";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { atomDark } from "react-syntax-highlighter/dist/esm/styles/prism";
 import { ButtonContext } from "../App";
+import Options from "./options";
 
 
-interface HandleInputEvent extends React.ChangeEvent<HTMLTextAreaElement> {}
 interface HandleTabKeyEvent extends React.KeyboardEvent<HTMLTextAreaElement>{}
+interface HandleChangeEvent extends React.ChangeEvent<HTMLTextAreaElement> {}
 
-function Editor() {
+
+function Editor({sendDataToParent}: {sendDataToParent: (log: string)=>void}) {
+    const [selectedLanguage, setSelectedLanguage] = useState<string>("");
     const [mode, setMode] = useState<string>('Normal');
     const [colorView, setColorView] = useState<boolean>(false);
-    const [code, setCode] = useState<string>(`# Start coding...\n # COdeCuddle Editer \n print("Hello")`);
+    const [code, setCode] = useState<string>(`\n \n`);
+
     const cmode: string[] = ['Normal', 'Color'];
 
     const buttonContext = useContext(ButtonContext);
     if (!buttonContext){
-        throw new Error("Button context is Null")
+      throw new Error("Button context is Null")
     }
-    const {setActiveButton} = buttonContext;
-
+    
+    const {activeButton,setActiveButton} = buttonContext;
+    
+    useEffect(() => {
+      const logMessage = `code updated: ${code}, selected: ${selectedLanguage}, activeButton: ${activeButton}`;
+      sendDataToParent(logMessage)
+  }, [activeButton, selectedLanguage]);
 
     const handleViewCLick = (value : string) =>{
-        console.log(value);
         setMode(value);
         value === 'Color' ? setColorView(true) : setColorView(false);
     }
-    
-    const handleInput = (event: HandleInputEvent): void => {
-      const textarea = event.target;
-      setCode(textarea.value);
+
+    const handleChange = (event: HandleChangeEvent) => {
+      const newCode = event.target.value;
+      setCode(newCode);
     };
+
     const handleTab =(event: HandleTabKeyEvent)=>{
       if (event.key === 'Tab'){
         event.preventDefault();
@@ -40,17 +49,24 @@ function Editor() {
         const newValue = code.substring(0, start) + '    ' + code.substring(end);
         setCode(newValue)
       }
-
     };
 
+    const handleButtonClick = (buttonType: string) => {
+        setActiveButton(buttonType);
+    };
+
+    const MemoizedButtons = memo(() => (
+      <div>
+          <Button onClick={() => handleButtonClick("run")}>Run</Button>
+          &nbsp;&nbsp;
+          <Button onClick={() => handleButtonClick("explain")}>Explain</Button>
+      </div>
+  ));
   return (
     <>
     <Col className="editor-wrapper">
-    <div style={{position:'absolute', right:'0',  color:'#fff', margin:'1rem'}}>
-        <Button onClick={()=>setActiveButton('run')}>Run</Button>
-        &nbsp;&nbsp;
-        <Button onClick={()=>setActiveButton('explain')}>Explain</Button>
-    </div>
+    <MemoizedButtons/>
+    <Options onLanguageChange={(language: string) => setSelectedLanguage(language)}/>
     
     <ul style={{position:'absolute', left:'0', bottom:'0', color:'#fff', padding:'0'}}>
         {
@@ -62,7 +78,7 @@ function Editor() {
         {
             colorView ? (
             <SyntaxHighlighter
-              language="python"
+              language={selectedLanguage}
               style={atomDark}
               showLineNumbers
               customStyle={{
@@ -85,8 +101,7 @@ function Editor() {
             :
             <textarea
               value={code}
-              onInput={handleInput}
-          
+              onChange={handleChange}
               className="editor-textarea"
               spellCheck={false}
               onKeyDown={handleTab}

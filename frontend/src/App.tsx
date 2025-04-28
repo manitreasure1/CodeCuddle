@@ -1,10 +1,9 @@
 
 import {createContext, useState } from 'react';
 import React from 'react';
-
 import './App.css'
-
 import Ide from './pages/Ide'
+
 
 interface ButtonContextType {
   activeButton: string
@@ -12,6 +11,7 @@ interface ButtonContextType {
 }
 
 export const ButtonContext = createContext<ButtonContextType| null> (null);
+
 
 export const ButtonProvider = ({children}: {children: React.ReactNode}) =>{
   const [activeButton, setActiveButton] = useState<string>('run');
@@ -24,12 +24,6 @@ export const ButtonProvider = ({children}: {children: React.ReactNode}) =>{
 
 };
 
-// const MyButton = () =>{
-//   const buttonContext = useContext(ButtonContext);
-//   if(!buttonContext){
-//     throw new Error("Button context is Null")
-//   }
-// }
 
 function App() {
   return (
