@@ -1,7 +1,6 @@
 #root {
-  /* max-width: 1280px; */
   margin: 0 auto;
-  padding: 2rem;
+  /* padding: 2rem; */
   text-align: center;
   box-sizing: border-box;
 }
@@ -25,7 +24,7 @@ li:hover{
 
 .ide-container{
   justify-content: center;
-  height: 90vh;
+  height: 100vh;
 }
 .ide-container-items{
   display: flex;

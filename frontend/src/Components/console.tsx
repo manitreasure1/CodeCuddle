@@ -16,7 +16,7 @@ function Console({ sendDataToParent }: { sendDataToParent: (log: string) => void
   const {activeButton} = buttonContext;
 
   useEffect(()=>{
-    const logMessage = `mode: ${mode} `
+    const logMessage = mode 
     sendDataToParent(logMessage)
   }, [activeButton, mode])
 
@@ -31,7 +31,7 @@ function Console({ sendDataToParent }: { sendDataToParent: (log: string) => void
           activeButton === 'explain' && <SelectMode mode={mode} setMode={handleModeChange}/>
         }
           <strong>Console:</strong>
-          <div>{output}</div>
+          <output>{output}</output>
         </Col>
     </>
   )

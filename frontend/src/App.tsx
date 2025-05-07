@@ -14,7 +14,7 @@ export const ButtonContext = createContext<ButtonContextType| null> (null);
 
 
 export const ButtonProvider = ({children}: {children: React.ReactNode}) =>{
-  const [activeButton, setActiveButton] = useState<string>('run');
+  const [activeButton, setActiveButton] = useState<string>('');
 
   return (
     <ButtonContext.Provider value={{activeButton, setActiveButton}}>

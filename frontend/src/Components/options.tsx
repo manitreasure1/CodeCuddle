@@ -3,7 +3,6 @@
 function Options({ onLanguageChange }: { onLanguageChange: (language: string) => void }) {
     const handleChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
         const selectedValue = event.target.value;
-        console.log("Selected value:", event.target.value);
         onLanguageChange(selectedValue);
     };
 
