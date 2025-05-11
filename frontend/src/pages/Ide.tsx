@@ -9,6 +9,9 @@ import api from "../api";
 
 function Ide() {
   const [childData, setChlidData] = useState<{[key: string]: string}>({})
+  const [sendOutPut , setSendOutPut] = useState<string>("")
+  const [loading, setLoading] = useState<string>("")
+  const [error, setError] = useState<string>("")
 
   const EditorLogs = ( log: { code: string; selectedLanguage: string; activeButton: string }) => {
       setChlidData(prevLogs => ({...prevLogs, ...log}));
@@ -24,18 +27,39 @@ function Ide() {
 
   
   // todo : 
-  async function sendRunRequest() {
-    await api.post("/api/run");
-  }
+  async function sendRunRequestOrExplainRequest() {
 
-  // todo : 
-  const sendExplainRequest = async()=>{
-    await api.post("/api/explain")
+
+    // const requestType = (url: string): string => {
+    //   switch(url){
+    //     case childData['code']:
+    //     case childData['']:
+    //       break;
+    //     case "":
+    //       break;
+    //     default:
+    //   }
+    //   return url
+    // }
+
+
+    
+    try{
+      setLoading("loading...")
+      await api.post("")
+      .then((response)=>{
+        console.log(response.data)
+        setSendOutPut(response.data)
+        setLoading("")
+      })
+    }catch(err){
+      console.error(err)
+      setError(`An error occurred while processing the request: ${err}`);
+      setLoading("");
+    }
   };
-
   useEffect(()=>{
-    // sendRunRequest();
-    // sendExplainRequest();
+    sendRunRequestOrExplainRequest();
   });
 
   return (
@@ -43,7 +67,10 @@ function Ide() {
     <Container fluid className="ide-container">
       <Row className="ide-container-items">
         <Editor sendDataToParent={(log: { code: string; selectedLanguage: string; activeButton: string }) => EditorLogs(log)}/>
-        <Console sendDataToParent={(output: string) => consoleLogs(output)}/>
+        <Console 
+          sendDataToParent={(output: string) => consoleLogs(output)} 
+          outPutResponse = {sendOutPut}
+        />
       </Row>
     </Container>
     </>

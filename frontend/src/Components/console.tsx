@@ -4,8 +4,12 @@ import SelectMode from "./selectMode";
 import { useContext, useEffect, useState } from "react";
 import { ButtonContext } from "../App";
 
+interface ConsoleProps {
+  sendDataToParent: (log: string) => void;
+  outPutResponse: string;
+}
 
-function Console({ sendDataToParent }: { sendDataToParent: (log: string) => void}) {
+function Console({ sendDataToParent, outPutResponse }: ConsoleProps) {
   const [mode, setMode] = useState<string>("Default");
   const [output, setOutput] = useState<string>("Output appears here...")
 
@@ -18,6 +22,7 @@ function Console({ sendDataToParent }: { sendDataToParent: (log: string) => void
   useEffect(()=>{
     const logMessage = mode 
     sendDataToParent(logMessage)
+    setOutput(outPutResponse)
   }, [activeButton, mode])
 
   const handleModeChange = (newMode: string) => {

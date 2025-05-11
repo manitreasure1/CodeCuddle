@@ -25,6 +25,7 @@
 - Monaco Editor
 - React-Bootstrap
 - Highlight.js (for language detection)
+- React dnd
 
 ### Backend
 - FastAPI (Python)
@@ -39,4 +40,4 @@
 ```bash
 git clone https://github.com/manitreasure1/CodeCuddle
 cd CodeCuddle
-
+```

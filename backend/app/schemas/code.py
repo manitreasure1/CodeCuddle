@@ -1,6 +1,7 @@
 from pydantic import BaseModel
 from typing import Literal
 
+
 class BaseRequest(BaseModel):
     code: str
 
