@@ -5,46 +5,7 @@
   box-sizing: border-box;
 }
 
-
 ul{
   list-style: none;
-  display: inline-flex;
-  width: 100%;
-  
-}
-li{
- flex-grow: 1;
- border: 2px solid rgb(56, 70, 79);
- padding: .5em 0;
-}
-li:hover{
-  cursor: pointer;
-
-}
-
-.ide-container{
-  justify-content: center;
-  height: 100vh;
-}
-.ide-container-items{
-  display: flex;
-  height: 100%;
-}
-
-
-@media (max-width: 768px) {
-  #root{
-    height: 100%;
-    padding: 0;
-  }
-  li {
-    width: 100%;
-  }
-  .ide-container-items {
-    flex-direction: column;
-  }
-  .ide-container{
-    height: 100vh;
-  }
-  
+  padding: 0;
 }

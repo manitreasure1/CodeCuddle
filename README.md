@@ -12,20 +12,16 @@
   - ELI5 (Explain Like I’m 5)
   - Emoji Mode
   - Grandma Mode
-- ⚙️ **Code Execution** – Run supported languages like Python, JavaScript, and more using an external sandbox API.
-- 🔍 **Auto Language Detection** – Paste your code, and CodeCuddle figures out the language for you.
-- 🌙 **Light/Dark Theme** – For cozy coding anytime.
+- ⚙️ **Code Execution** – Run supported languages like Python, JavaScript, and more.
+- 🔍 **Auto Language Detection** – Paste your code, and CodeCuddle 
 
 ---
 
-## 🚀 Tech Stack
 
 ### Frontend
 - React
 - Monaco Editor
 - React-Bootstrap
-- Highlight.js (for language detection)
-- React dnd
 
 ### Backend
 - FastAPI (Python)

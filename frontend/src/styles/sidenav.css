@@ -1,0 +1,20 @@
+.sidenav{
+    height: 100vh;
+    width: fit-content;
+    max-width: 25%;
+    z-index: 10;
+}
+
+.sidenav-icons .material-symbols-outlined{
+    height: 40px;
+    width: 40px;
+}
+
+
+.sidenav-offset li{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding: 0 .5rem;
+    white-space: nowrap;    
+   
+}
