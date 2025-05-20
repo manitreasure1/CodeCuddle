@@ -3,7 +3,7 @@ from app.config import Config
 from typing import Final
 
 
-config = Config()
+config = Config() #type: ignore
 client = OpenAI(
     base_url="https://api.studio.nebius.ai/v1/",
     api_key=config.NEBUIS_API_KEY

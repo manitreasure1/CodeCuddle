@@ -1,9 +1,4 @@
-.sidenav{
-    height: 100vh;
-    width: fit-content;
-    max-width: 25%;
-    z-index: 10;
-}
+
 
 .sidenav-icons .material-symbols-outlined{
     height: 40px;
@@ -15,6 +10,9 @@
     overflow: hidden;
     text-overflow: ellipsis;
     padding: 0 .5rem;
-    white-space: nowrap;    
-   
+    white-space: nowrap;   
+}
+
+.explain-nav li:hover{
+    background-color: rgba(212, 203, 203, 0.66);
 }
