@@ -5,3 +5,13 @@ const api: AxiosInstance = axios.create({
      withCredentials: true
 })
 export default api;
+
+
+
+type RequestJsonData = {
+    [key: string]: any
+}
+
+export async function sendReq({ reqData }: { reqData: RequestJsonData;}): Promise<RequestJsonData> {
+    return api.post("/", { reqData });
+} 

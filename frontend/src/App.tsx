@@ -1,36 +1,20 @@
 import './App.css'
-import Editor from '@monaco-editor/react';
-import SideNav from './components/sidenav';
-import Terminal from './components/terminal';
-import ExplainPanel from './components/explain_panel';
-import { useState } from 'react';
+import { Suspense} from 'react';
+import Loading from './components/loading';
+import Ide from './pages/Ide';
+import './styles/ide.css'
+
+// const Ide = lazy(() => new Promise<{ default: React.FC }>(resolve => setTimeout(() => import('./pages/Ide').then(module => resolve({ default: module.default })), 5000)));
 
 
-function App() {
-  const [code, setCode] = useState(String);
-
-  const handleChange = (value: string | undefined) => {
-  setCode(value || ''); 
-}; 
-console.log(`code ${code}`)
- 
+function App() { 
   return (
     <>
-      <div className='d-flex justify-content-between overflow-hidden' style={{height:'100vh'}}>   
-        <SideNav />
-        <div className='d-flex flex-column  border border-dark text-start' style={{flex: 1, minWidth: 0}}>
-          <Editor  
-            theme='vs-dark'
-            defaultLanguage="python" 
-            defaultValue=" # some comment" 
-            onChange={handleChange}
-          />
-          <Terminal />
-        </div>     
-          <ExplainPanel />
-      </div>
+    <Suspense fallback={<Loading/>}>
+      <Ide/>
+    </Suspense>    
     </>
   )
 }
 
-export default App
+export default App;

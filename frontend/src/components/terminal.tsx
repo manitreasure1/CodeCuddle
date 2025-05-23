@@ -10,11 +10,11 @@ function Terminal() {
   return (
     <>
     {
-      isClosed ||
-    <div className="border bg-dark text-white d-flex flex-column position-relative overflow-auto  lh-lg" style={{maxHeight:'40%', minHeight:'35%', scrollbarColor:'#3f4042 #e4e8ef00'}}>
-      <span className="btn text-white bg-dark position-sticky top-0 "  onClick={handleClose}>&times;</span>
+      isClosed &&
+    <div className="border text-white d-flex flex-column position-relative overflow-auto  lh-lg" style={{maxHeight:'40%', minHeight:'35%', scrollbarColor:'#3f4042 #e4e8ef00'}}>
+      <span className="btn text-white position-sticky top-0 "  onClick={handleClose}>&times;</span>
             
-        <output className="p-3">
+        <output className="p-3 text-center">
           Lorem ipsum la quibusdam. Excepturi amet veniam a fugiat illo reprehenderit aperiam?
         </output>
     </div>

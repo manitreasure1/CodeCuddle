@@ -1,0 +1,55 @@
+.sidenav-icons .material-symbols-outlined{
+    height: 40px;
+    width: 40px;
+}
+
+.sidenav-offset li{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding: 0 .5rem;
+    white-space: nowrap;   
+}
+
+.explain-nav li:hover{
+    background-color: rgba(212, 203, 203, 0.66);
+}
+
+ .placeholder{
+    background-color: #ccc;
+    background-image: linear-gradient(to right, #ccc 0%, #ddd 20%, #ccc 40%, #ccc 100%);
+    animation: shimmer 5s infinite linear, breathing 2s infinite;
+ }
+ @keyframes shimmer{
+    0%{
+
+        background-position: -800px 0;
+    }
+    100%{
+
+        background-position: 800px 0;
+    }
+ }
+ @keyframes breathing{
+    0%{
+        opacity: 0.5;
+        transform: scale(0.98);
+    }
+    50%{
+        opacity: 1;
+        transform: scale(1);
+    }
+    100%{
+        opacity: 0.5;
+        transform: scale(0.98);
+
+    }
+ }
+.placeholder.terminal{
+    height: 30%;
+   
+}
+.placeholder.workplace{
+    height: 70%;
+}
+
+

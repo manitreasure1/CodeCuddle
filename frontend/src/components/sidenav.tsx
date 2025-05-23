@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import '../styles/sidenav.css'
 
 
 function SideNav({onToggle}:{onToggle?: any}) {
@@ -11,7 +10,7 @@ function SideNav({onToggle}:{onToggle?: any}) {
       onToggle(!show)
     } ;
     return(
-        <aside className='sidenav d-flex  bg-dark text-white' style={{zIndex:'15', maxWidth:'25%'}}>  
+        <aside className='sidenav d-flex  text-white' style={{zIndex:'15', maxWidth:'25%'}}>  
           <div className='sidenav-icons p-2  d-flex flex-column justify-content-between'>
             <button title='explorer' className='material-symbols-outlined text-white bg-dark rounded-circle' onClick={handleShow}>
               folder_open
