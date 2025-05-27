@@ -1,18 +1,21 @@
-import { useState } from "react";
-function ExplainPanel() {
 
-  const [show, setShow] = useState<boolean>(false);
 
-  const handleClose = ()=>{
-    setShow(!show)
-  };
+
+interface ExplainPanelProps {
+  isPanelClosed: boolean;
+  handleExplainIconClick: () => void;
+}
+
+function ExplainPanel({isPanelClosed, handleExplainIconClick}: ExplainPanelProps) {
+
+  
   return (
     <>
     {
-      show &&
+      isPanelClosed &&
     <div className="border text-white d-flex flex-column " style={{width: 350, maxWidth: '100vw', flexShrink: 0}} >
       <div className="border">
-        <span className="btn text-white  " onClick={handleClose}>&times;</span>
+        <span className="btn text-white  " onClick={handleExplainIconClick}>&times;</span>
           <h3 style={{wordWrap:'break-word'}}>AI Explanation</h3>
           <nav className="explain-nav">
               <ul>
